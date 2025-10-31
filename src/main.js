@@ -23,7 +23,7 @@ function resizeCanvasToDisplaySize() {
 
 
 
-let shaders = [landShader];
+let shaders = [landShader, waveShader];
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 70, 2, 2, 1000 );
@@ -42,7 +42,7 @@ const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 
 let clock = new THREE.Clock();
-camera.position.z = 35;
+camera.position.z = 30;
 camera.position.y = 2;
 camera.position.x = 0
 mesh.rotation.x = Math.PI / -2;

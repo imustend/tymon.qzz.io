@@ -43,29 +43,29 @@ const landShader = new THREE.ShaderMaterial( {
         }
 
 		void main() {
-		    vUv = uv;
-		    
-		    float stime = mod(time, 5.);
-		    float period = 5.;
-		    float n = floor(time/period);
-		    float newseed = (useed + n * period * 1000.12312312)*5.123123;
-		    float prevseed = (useed + (n-1.) * period * 1000.12312312)*5.123123;
-		    
-		    vec3 newPosition = position;
-		    vec3 oldPosition = position;
-		    
-		    
-		    float mixv = smoothstep(0., .6, stime);
-		    
-		    if (mixv != 1.) {
-		    	oldPosition.z -= 8.;
+            vUv = uv;
+            
+            float stime = mod(time, 5.);
+            float period = 5.;
+            float n = floor(time/period);
+            float newseed = (useed + n * period * 1000.12312312)*5.123123;
+            float prevseed = (useed + (n-1.) * period * 1000.12312312)*5.123123;
+            
+            vec3 newPosition = position;
+            vec3 oldPosition = position;
+            
+            
+            float mixv = smoothstep(0., .6, stime);
+            
+            if (mixv != 1.) {
+                oldPosition.z -= 5.;
                 oldPosition.z +=  6. * noise(vec2(newPosition.x * .2, newPosition.y * .2), prevseed);
                 oldPosition.z +=  .7 * noise(vec2(newPosition.x * .8, newPosition.y * .8), prevseed);
                 oldPosition.z +=  .25 * noise(vec2(newPosition.x * 1.6, newPosition.y * 1.6), prevseed);
                 oldPosition.z +=  .125 * noise(vec2(newPosition.x * 2.5, newPosition.y * 2.5), prevseed);
-		    }
-		    
-	
+            }
+            
+    
      
             
             newPosition.z -= 5.;
@@ -73,15 +73,15 @@ const landShader = new THREE.ShaderMaterial( {
             newPosition.z +=  .7 * noise(vec2(newPosition.x * .8, newPosition.y * .8), newseed);
             newPosition.z +=  .25 * noise(vec2(newPosition.x * 1.6, newPosition.y * 1.6), newseed);
             newPosition.z +=  .125 * noise(vec2(newPosition.x * 2.5, newPosition.y * 2.5), newseed);
-		    
-		    
-		    vec3 fpos = mix(oldPosition, newPosition, mixv);
-		    
+            
+            
+            vec3 fpos = mix(oldPosition, newPosition, mixv);
+            
             vec4 worldPos = modelMatrix * vec4(fpos, 1.0);
             vWorldPos = worldPos.xyz;
 
             gl_Position = projectionMatrix * viewMatrix * worldPos;
-		}
+        }
     `,
     fragmentShader: `
     #ifdef GL_OES_standard_derivatives
