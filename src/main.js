@@ -1,8 +1,7 @@
 import './style.css'
 import './sample.js'
 import * as THREE from 'three';
-import {waveShader} from "./shaders/waveShader.js";
-import {landShader} from "./shaders/landShader.js";
+import {shaders} from "./shaders/shaders.js";
 
 function resizeCanvasToDisplaySize() {
     const canvas = renderer.domElement;
@@ -22,9 +21,6 @@ function resizeCanvasToDisplaySize() {
 }
 
 
-
-let shaders = [landShader, waveShader];
-
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 70, 2, 2, 1000 );
 
@@ -35,7 +31,19 @@ const renderer = new THREE.WebGLRenderer( {
 // renderer.setSize( window.innerWidth, window.innerHeight );
 document.getElementById("render").appendChild( renderer.domElement );
 
-const material = shaders.sample();
+const shader = shaders.sample();
+
+const material = new THREE.ShaderMaterial( {
+    side: THREE.DoubleSide,
+
+    uniforms: {
+        time: {value: 0.0},
+        useed: {value: 0.0},
+    },
+
+    vertexShader: shader.vert,
+    fragmentShader: shader.frag,
+});
 
 const geometry = new THREE.PlaneGeometry(40,40,256,256);
 const mesh = new THREE.Mesh( geometry, material );
