@@ -1,7 +1,7 @@
 import './style.css'
 import './sample.js'
 import * as THREE from 'three';
-import {shaders} from "./shaders/shaders.js";
+import {shaders} from "./shaders.js";
 
 function resizeCanvasToDisplaySize() {
     const canvas = renderer.domElement;
@@ -37,8 +37,8 @@ const material = new THREE.ShaderMaterial( {
     side: THREE.DoubleSide,
 
     uniforms: {
-        time: {value: 0.0},
-        useed: {value: 0.0},
+        utime: {value: 0.0},
+        useed: {value: Math.random() * 10000},
     },
 
     vertexShader: shader.vert,
@@ -56,12 +56,11 @@ camera.position.x = 0
 mesh.rotation.x = Math.PI / -2;
 let t = 0;
 
-material.uniforms.useed.value = Math.random() * 10000;
 
 
 function animate() {
     t += clock.getDelta();
-    material.uniforms.time.value = t;
+    material.uniforms.utime.value = t;
     // mesh.rotation.z += 0.0005;
     resizeCanvasToDisplaySize();
     renderer.render( scene, camera );

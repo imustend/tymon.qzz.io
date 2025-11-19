@@ -5,7 +5,7 @@ let shaders = [
         vert:
                 `
                 varying vec2 vUv;
-                uniform float time;
+                uniform float utime;
                 uniform float useed;
                 varying vec3 vWorldPos;
             
@@ -16,7 +16,7 @@ let shaders = [
                         float amplitude = 3.;
                         float frequency = .33;
                         float y = sin(newPosition.x * frequency);
-                        float t = 0.01*((useed-time)*100.0);
+                        float t = 0.01*((useed-utime)*100.0);
                         y += sin(newPosition.x*frequency*2.1 + t)*4.5;
                         y += sin(newPosition.x*frequency*1.72 + t*1.121)*4.0;
                         y += sin(newPosition.x*frequency*2.221 + t*0.437)*5.0;
@@ -57,7 +57,7 @@ let shaders = [
         //=========================================================================================
         vert: `
                 varying vec2 vUv;
-                uniform float time;
+                uniform float utime;
                 uniform float useed;
                 varying vec3 vWorldPos;
                 
@@ -92,9 +92,9 @@ let shaders = [
                     void main() {
                         vUv = uv;
                         
-                        float stime = mod(time, 5.);
+                        float stime = mod(utime, 5.);
                         float period = 5.;
-                        float n = floor(time/period);
+                        float n = floor(utime/period);
                         float newseed = (useed + n * period * 1000.12312312)*5.123123;
                         float prevseed = (useed + (n-1.) * period * 1000.12312312)*5.123123;
                         

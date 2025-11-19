@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: #020202;
 }
 
 canvas {
@@ -9,11 +9,11 @@ canvas {
 
 
 #name {
-           font-family: "Doto", sans-serif;
-           font-optical-sizing: auto;
-           font-weight: 900;
-           font-style: normal;
-           font-variation-settings: "ROND" 29;
+    font-family: "Doto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-variation-settings: "ROND" 29;
     margin: 0 10vw;
     font-size: xx-large;
     display: flex;
@@ -47,6 +47,27 @@ a {
 
 a:hover {
     text-decoration: underline dodgerblue;
+}
+
+#email {
+    display: flex;
+    align-items: center;
+}
+
+#email::after {
+    content: url("copy.svg");
+    display: block;
+    fill: azure;
+    height: 1rem;
+    width: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    margin-left: 0.5em;
+}
+
+#email:active::after {
+    opacity: 1;
+    transition: opacity 0.01s ease-out;
 }
 
 li {
