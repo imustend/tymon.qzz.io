@@ -50,8 +50,8 @@ const mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 
 let clock = new THREE.Clock();
-camera.position.z = 30;
-camera.position.y = 2;
+camera.position.z = 28;
+camera.position.y = 1;
 camera.position.x = 0
 mesh.rotation.x = Math.PI / -2;
 let t = 0;
