@@ -67,7 +67,7 @@ a:hover {
 }
 
 #email::after {
-    content: url("copy.svg");
+    content: url("../public/copy.svg");
     display: block;
     fill: azure;
     height: 1rem;
