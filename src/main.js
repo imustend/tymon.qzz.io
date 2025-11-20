@@ -22,6 +22,7 @@ function resizeCanvasToDisplaySize() {
 
 
 const scene = new THREE.Scene();
+scene.background = new THREE.Color("#020202");
 const camera = new THREE.PerspectiveCamera( 70, 2, 2, 1000 );
 
 
